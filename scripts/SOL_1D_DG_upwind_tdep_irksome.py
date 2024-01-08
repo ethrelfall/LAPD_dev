@@ -27,7 +27,6 @@ butcher_tableau = GaussLegendre(2)
 
 # model parameters
 nstar = Constant(1.0)
-diffusion = 1.0e0
 Temp = 1.0
 
 x = SpatialCoordinate(mesh)
