@@ -74,7 +74,7 @@ params = {'snes_monitor': None, 'snes_max_it': 100,
           'pc_factor_mat_solver_type': 'mumps'}
 
 # Dirichlet BCs are needed for boundary velocity
-
+# -1, 1 is sonic outflow, can have other values but don't exceed sound speed
 bc_test1 = DirichletBC(V.sub(1),as_vector([-1]),1)
 bc_test2 = DirichletBC(V.sub(1),as_vector([1]),2)
 
