@@ -57,11 +57,12 @@ u_n = 0.5*(dot(u,norm)+abs(dot(u,norm)))
 
 # outflow BC imposed weakly in here, penalty term in ds (note conditional not really needed here as both are outflow)
 
-F = -((Dt(n)*v1)*dx + (dot(Dt(u),v2))*dx) \
+F = -((Dt(n)*v1)*dx + (n*dot(Dt(u),v2))*dx) \
    + (n*dot(u, grad(v1))+v1*nstar)*dx \
-   + (n*u[0]*dot(u, grad(v2[0]))+Temp*n*grad(v2[0])[0])*dx \
+   + (nstar*dot(u,v2)+n*u[0]*grad(dot(u,v2))[0]+n*u[0]*dot(u, grad(v2[0]))+Temp*n*grad(v2[0])[0])*dx \
    - (v1('+') - v1('-'))*(u_n('+')*n('+') - u_n('-')*n('-'))*dS \
    - (v2('+')[0]-v2('-')[0])*(n('+')*u('+')[0]*u[0]('+')-n('-')*u('-')[0]*u[0]('-'))*dS \
+   + (u('+')[0]*v2('+')[0]-u('-')[0]*v2('-')[0])*(n('+')*u('+')[0]-n('-')*u('-')[0])*dS \
    - (v2('+')[0]-v2('-')[0])*(n('+')-n('-'))*Temp*dS \
    - conditional(dot(u, norm) > 0, v1*dot(u, norm)*n, 0.0)*ds \
 
