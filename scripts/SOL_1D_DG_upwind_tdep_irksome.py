@@ -61,12 +61,8 @@ F = -((Dt(n)*v1)*dx + (n*dot(Dt(u),v2))*dx) \
    + (n*dot(u, grad(v1))+v1*nstar)*dx \
    + (nstar*dot(u,v2)+n*u[0]*grad(dot(u,v2))[0]+n*u[0]*dot(u, grad(v2[0]))+Temp*n*grad(v2[0])[0])*dx \
    - (v1('+') - v1('-'))*(u_n('+')*n('+') - u_n('-')*n('-'))*dS \
-   - (v2('+')[0]-v2('-')[0])*(n('+')*u_n('+')*u[0]('+')-n('-')*u_n('-')*u[0]('-'))*dS \
    + (u('+')[0]*v2('+')[0]-u('-')[0]*v2('-')[0])*(n('+')*u_n('+')-n('-')*u_n('-'))*dS \
-   - (v2('+')[0]-v2('-')[0])*(n('+')*u_n('+')/u('+')[0]+n('-')*u_n('-')/u('-')[0])*Temp*dS \
    - conditional(dot(u, norm) > 0, v1*dot(u, norm)*n, 0.0)*ds \
-
-# IMPORTANT penultimate line above, last term has sign changed to avoid sign problem caused by negative u
 
 # params taken from Cahn-Hilliard example cited above
 params = {'snes_monitor': None, 'snes_max_it': 100,
